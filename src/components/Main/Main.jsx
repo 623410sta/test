@@ -1,14 +1,14 @@
 import styles from './Main.module.scss';
 
-import TagSection from '../TagSection/TagSection';
-import MainSection from '../MainSection/MainSection';
+import Vacancy from '../Vacancy/Vacancy';
+import CareerProfile from '../CareerProfile/CareerProfile';
 
-function Main({ isSearch, data }) {
+function Main() {
 	return (
-		<main className={styles.main}>
-			<TagSection />
-			<MainSection isSearch={isSearch} data={data} />
-		</main>
+		<section className={styles.main}>
+			<Vacancy />
+			<CareerProfile />
+		</section>
 	);
 }
 

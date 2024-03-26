@@ -1,103 +1,32 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	clearCards,
-	clearFiltered,
-	clearQuery,
-	clearFilters,
-} from '../../slices/cardsSlice/cardsSlice';
-import { reset } from '../../slices/offsetSlice/offsetSlice';
-
-import logo from '../../assets/images/logo.svg';
-import logoDark from '../../assets/images/logo-dark.svg';
-import icon from '../../assets/images/profile-icon.svg';
-import iconDark from '../../assets/images/profile-icon-dark.svg';
-import Theme from '../Theme/Theme';
-import SearchSection from '../SearchSection/SearchSection';
-import { useMatchMedia } from '../../hooks/useMatchMedia';
-
 import styles from './Header.module.scss';
-
-// const FullRenderedSection = () => {
-// 	const theme = useSelector(state => state.theme);
-
-// 	return (
-// 		<nav className={styles.align_container}>
-// 			<Link to="/favourites" className={styles.favourites}>
-// 				<div className={theme === 'light' ? styles.icon : styles.icon_dark} />
-// 				<p className={styles.text}>Избранное</p>
-// 			</Link>
-// 			<Theme />
-// 		</nav>
-// 	);
-// };
-
+import hhlogo from '../../assets/images/hhlogo.svg';
+import сaption from '../../assets/images/сaption.svg';
+import bell from '../../assets/images/bell.svg';
+import ava_vk from '../../assets/images/ava_vk.svg';
 function Header() {
-	const { isMobile, isDesktop } = useMatchMedia();
-
-	const location = useLocation();
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const theme = useSelector(state => state.theme);
-	const offset = useSelector(state => state.offset);
-
-	const handleClick = () => {
-		if (location.pathname !== '/') {
-			navigate('/', { replace: true });
-		}
-		dispatch(clearFiltered());
-		dispatch(clearQuery());
-		dispatch(clearCards());
-		dispatch(reset());
-		navigate(0);
-	};
-
 	return (
 		<header className={styles.header}>
-			<div className={styles.container}>
-				<div>
-					<button type="button" onClick={handleClick} className={styles.logo}>
-						{theme === 'light' ? (
-							<img className={styles.logo} src={logo} alt="Лого" />
-						) : (
-							<img className={styles.logo} src={logoDark} alt="Лого" />
-						)}
-					</button>
-				</div>
-				{isDesktop && <SearchSection />}
-
-				{!['/signin', '/signup', '/profile'].some(path => location.pathname.match(path)) ? (
-					<nav className={styles.align_container}>
-						<Link to="/favourites" className={styles.favourites}>
-							<div className={theme === 'light' ? styles.icon : styles.icon_dark} />
-							{isDesktop && <p className={styles.text}>Избранное</p>}
-						</Link>
-						<Theme />
-					</nav>
-				) : (
-					<nav className={styles.align_container}>
-						{location.pathname.match('/profile') && (
-							<>
-								<div className={styles.profile}>
-									<img
-										src={theme === 'light' ? icon : iconDark}
-										className={styles.profile_icon}
-										alt="profile"
-									/>
-									<p className={styles.text}>pochta@email.ru</p>
-								</div>
-								<div className={styles.button_container}>
-									<button type="button" className={styles.button_quit} onClick={handleClick}>
-										Выйти
-									</button>
-								</div>
-							</>
-						)}
-						<Theme />
-					</nav>
-				)}
+			<div className={styles.logo}>
+				<img src={hhlogo} className={styles.img_logo} alt="Логотип" />
+				<img src={сaption} className={styles.img_company} alt="Название компании" />
 			</div>
-			{isMobile && <SearchSection />}
+			<nav className={styles.menu}>
+				<ul className={styles.list}>
+					<li className={styles.item}>Главная</li>
+					<li className={styles.item}>Мои заявки</li>
+					<li className={styles.item}>Поиск по рынку</li>
+					<li className={styles.item}>Счет</li>
+					<li className={styles.item}>Помощь</li>
+				</ul>
+			</nav>
+			<div className={styles.user}>
+				<img src={bell} className={styles.img_bell} alt="Уведомления" />
+				<img src={ava_vk} className={styles.img_vk} alt="VK" />
+				<div className={styles.user_info}>
+					<span className={styles.user_info_name}>Виталий Крымов</span>
+					<span className={styles.user_info_number}>#45732</span>
+				</div>
+			</div>
 		</header>
 	);
 }

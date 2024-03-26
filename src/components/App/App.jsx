@@ -1,88 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import queryString from 'query-string';
-
-import { setCards, clearCards, setFiltered } from '../../slices/cardsSlice/cardsSlice';
-import { useGetCardsQuery } from '../../slices/apiSlice/apiSlice';
-import { reset } from '../../slices/offsetSlice/offsetSlice';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
-import Main from '../Main/Main';
-import Login from '../Login/Login';
-import Footer from '../Footer/Footer';
-import CardMedium from '../CardMedium/CardMedium';
-import Favourites from '../Favourites/Favourites';
-import NotFound from '../NotFound/NotFound';
-import Register from '../Register/Register';
-import Profile from '../Profile/Profile';
-import Preloader from '../Preloader/Preloader';
+import Screen1 from '../Screen1/Screen1';
+import Screen2 from '../Screen2/Screen2';
+import Screen3 from '../Screen3/Screen3';
+import Screen4 from '../Screen4/Screen4';
+import Screen5 from '../Screen5/Screen5';
+import Result from '../Result/Result';
 
 import styles from './App.module.scss';
 
 function App() {
-	const [loggedIn, setLoggedIn] = useState(true);
-	// const [loggedIn, setLoggedIn] = useState(!!localStorage.token);
-	const [searchSuccess, setSearchSuccess] = useState(true);
-
-	const tokenCheck = () => {
-		if (localStorage.token) {
-			setLoggedIn(true);
-		}
-	};
-
-	useEffect(() => {
-		tokenCheck();
-	}, []);
-
-	const dispatch = useDispatch();
-	const filters = useSelector(state => state.cards.filters);
-	const query = useSelector(state => state.cards.query);
-	const offsetCounter = useSelector(state => state.offset);
-	const filtered = useSelector(state => state.cards.filtered);
-
-	const { data, isLoading, isSuccess, isFetching, refetch } = useGetCardsQuery(
-		{
-			name: query,
-			address: query,
-			both: query,
-			page: offsetCounter,
-			availables: queryString.stringify({ availables: [...filters] }),
-		},
-		{ refetchOnMountOrArgChange: false },
-	);
-
-	useEffect(() => {
-		dispatch(reset());
-		if (!query && isSuccess) {
-			dispatch(setCards(data.results));
-		}
-		if (query && isSuccess) {
-			dispatch(setFiltered(data.results));
-		}
-		if (query && data.results.length === 0) {
-			setSearchSuccess(false);
-		}
-	}, [data]);
-
-	if (isLoading) {
-		return <Preloader />;
-	}
+	const form = useSelector(state => state.form.form);
+	console.log('form:', form);
 
 	return (
 		<div className={styles.root}>
 			<Header />
 			<Routes>
-				<Route path="/" element={<Main isSearch={searchSuccess} data={data} />} />
-				<Route path="/signin" element={<Login />} />
-				<Route path="/card/:cardId" element={<CardMedium />} />
-				<Route path="/signup" element={<Register />} />
-				<Route path="/favourites" element={<Favourites />} />
-				<Route path="/profile" element={<ProtectedRoute element={Profile} loggedIn={loggedIn} />} />
-				<Route path="*" element={<NotFound />} />
+				<Route exact path="/" element={<Screen1 />} />
+				<Route path="/2" element={<Screen2 />} />
+				<Route path="/3" element={<Screen3 />} />
+				<Route path="/4" element={<Screen4 />} />
+				<Route path="/5" element={<Screen5 />} />
+				<Route path="/result" element={<Result />} />
 			</Routes>
-			<Footer />
 		</div>
 	);
 }

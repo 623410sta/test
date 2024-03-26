@@ -1,108 +1,66 @@
-@use '../../assets/fonts/fonts_list' as *;
-
 .header {
-	margin: 36px auto;
-	max-width: 1132px;
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	
+	background-color: #222324;
+	color: #fff;
+	padding: 16px 96px;
+	margin: 0 auto;
 }
-
 .logo {
-	width: 172px;
-	height: 54px;
 	display: flex;
 	align-items: center;
-	border: 0;
-	background: transparent;
-	cursor: pointer;
-	text-decoration: none;
+	max-width: 138px;
 }
-
-// .logo_text {
-// 	margin: 0;
-// 	color: var(--decoration-color);
-// 	@include font($sans, 28px, 20px, 0.28px);
-// 	font-weight: 700;
-// }
-
-.container {
+.img_logo {
 	width: 100%;
-	min-height: 54px;
-	flex-direction: row;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.align_container {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-.favourites {
-	display: flex;
-	align-items: center;
-	margin-right: 66px;
-	cursor: pointer;
-	text-decoration: none;
-	&:hover {
-		background-color: var(--hover);
-		border-radius: 12px;
-	}
-}
-
-.icon {
-	width: 44px;
-	height: 44px;
-	background-image: url('../../assets/images/ui-kit-icons/favorites-no-background.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.icon_dark {
-	width: 44px;
-	height: 44px;
-	background-image: url('../../assets/images/ui-kit-icons/favorites.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.text {
-	padding: 0;
-	@include font($sans, 18px, 20px, 0.18px);
-	// color: black;
-	color: var(--text-color);
-	margin: 4px 16px 0 4px;
-}
-
-.profile {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-.profile_icon {
-	width: 17px;
-	height: 22px;
+	height: auto;
+	max-width: 46px;
 	margin-right: 12px;
 }
 
-@media screen and (max-width: 766px) {
-	.header {
-		flex-direction: column;
-		padding: 0 16px;
-	}
-
-	.logo{
-		width: 120px;
-		height: 40px;
-		padding: 0;
-	}
-
-.favourites {
-	margin-right: 6px;
+.menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 85px;
 }
+.list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+.item {
+	margin-right: 24px;
+	color: #959799;
+	cursor: pointer;
+	width: auto;
+}
+.item:last-child {
+	margin-right: 0;
+}
+.item:hover,
+.item.active {
+	color: #fff;
+}
+.user {
+	display: flex;
+	align-items: center;
+	width: 224px;
+}
+.img_bell {
+	margin-right: 16px;
+}
+.user_info {
+	display: flex;
+	flex-direction: column;
+}
+.img_vk {
+	margin-right: 12px;
+}
+
+.user_info_number {
+	color: #959799;
+	font-size: 14px;
+	line-height: 19.6px;
 }
