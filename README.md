@@ -1,8 +1,30 @@
-# React + Vite
+# Кофейный гид. Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+В данном репозитории находится frontend-часть веб-приложения шаблонизатора документов "Кофейный гид".
 
-Currently, two official plugins are available:
+**Наш стэк**: Vite, React.js, Redux, SASS, Storybook, Prettier, Lint-staged, Husky, ESLint, Commitizen
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Разработчики**: Шершнёв Павел, Алексей Вахт, Алёна Лялюшкина, Коршакова Ирена, Самошин Юрий.
+
+## Инструкция для новых разработчиков и тех, кто хочет поближе познакомиться с проектом
+
+### Как локально развернуть проект:
+
+1. Проект скачивается локально в отдельную папку через git clone.  
+   Рекомендуем перед этим обновить версию Node.js как минимум до 18.  
+   `git clone  git@github.com:py-Coffee-Guide/coffee-guide-frontend.git`
+2. Необходимо локально установить зависимости из проекта.  
+   `npm i`
+3. В режиме разработки приложение откроется на 5173 порту после введения этой команды:  
+   `npm run dev`
+
+### Как работать над задачей:
+
+1. Подтянуть актуальные изменения из ветки **develop**.  
+   `git pull origin develop.`
+2. Создать отдельную ветку. Название ветки должно отражать функционал.  
+   Например:
+
+- Feature - разработка новой фичи. _Feature/Header - разработка компонента header._
+- Fix - дебагинг и всевозможные фиксы кода. _Fix/Header - ветка для починки компонента header._  
+  `git checkout -b feature/header`
